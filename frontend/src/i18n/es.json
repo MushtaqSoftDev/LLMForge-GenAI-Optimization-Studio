@@ -1,0 +1,86 @@
+{
+  "app": {
+    "title": "Laboratorio de Experimentos LLM"
+  },
+  "nav": {
+    "dashboard": "Panel",
+    "promptEng": "Ingeniería de Prompts",
+    "fineTuning": "Ajuste Fino",
+    "rl": "Aprendizaje por Refuerzo",
+    "logout": "Cerrar sesión"
+  },
+  "auth": {
+    "login": "Iniciar Sesión",
+    "signup": "Registrarse",
+    "username": "Nombre de usuario",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "noAccount": "¿No tienes una cuenta?",
+    "haveAccount": "¿Ya tienes una cuenta?",
+    "loginBtn": "Entrar",
+    "signupBtn": "Crear Cuenta"
+  },
+  "dashboard": {
+    "welcome": "¡Bienvenido, {name}!",
+    "subtitle": "Elige un módulo para empezar a experimentar",
+    "promptEngTitle": "Ingeniería de Prompts",
+    "promptEngDesc": "Experimenta con parámetros de generación en tiempo real con múltiples proveedores LLM.",
+    "fineTuningTitle": "Ajuste Fino",
+    "fineTuningDesc": "Aprende cómo funciona el fine-tuning — Completo, LoRA, Prompt Tuning — con teoría y un ejemplo de código ejecutable con evaluación ROUGE.",
+    "rlTitle": "Aprendizaje por Refuerzo",
+    "rlDesc": "Entrena modelos con aprendizaje por refuerzo con retroalimentación humana. Próximamente.",
+    "comingSoon": "Próximamente",
+    "start": "Comenzar"
+  },
+  "chat": {
+    "placeholder": "Escribe tu mensaje…",
+    "send": "Enviar",
+    "newChat": "Nuevo Chat",
+    "newChatHint": "Inicia una conversación nueva. Los mensajes actuales se guardan en la lista; esto limpia la vista para probar otro tema o parámetros.",
+    "thinking": "Pensando…",
+    "noMessages": "Inicia una conversación escribiendo un mensaje abajo.",
+    "errorPrefix": "Error"
+  },
+  "params": {
+    "title": "Parámetros",
+    "provider": "Proveedor",
+    "temperature": "Temperatura",
+    "maxTokens": "Tokens Máximos",
+    "topP": "Top P",
+    "topK": "Top K"
+  },
+  "methods": {
+    "title": "Guía de Parámetros",
+    "paramsSectionTitle": "Parámetros para controlar la salida",
+    "techniquesSectionTitle": "Técnicas para estructurar prompts",
+    "techniquesIntro": "Sigue estas reglas para escribir prompts claros y efectivos (como en cursos de buenas prácticas):",
+    "technique1Title": "Sé específico",
+    "technique1Desc": "Indica exactamente qué quieres: tarea, formato, longitud y estilo. Prompts vagos dan respuestas vagas.",
+    "technique2Title": "Da contexto",
+    "technique2Desc": "Asigna al modelo un rol, audiencia o dominio (ej. \"Eres un profesor explicando a un niño de 10 años\").",
+    "technique3Title": "Usa estructura",
+    "technique3Desc": "Usa encabezados, viñetas o pasos. Separa partes con ### o --- para distinguir instrucciones del contenido.",
+    "technique4Title": "Da ejemplos cuando ayude",
+    "technique4Desc": "Uno o dos ejemplos entrada→salida fijan el formato y el comportamiento que quieres.",
+    "technique5Title": "Itera",
+    "technique5Desc": "Refina el prompt según la salida. Añade restricciones o ejemplos si el modelo se desvía.",
+    "promptingSectionTitle": "Técnicas de prompting",
+    "zeroShotTitle": "Prompting zero-shot",
+    "zeroShotDesc": "Pide al modelo que haga algo sin ejemplos. Mejor cuando la tarea es simple o el modelo es potente (ej. \"Traduce esto al francés\").",
+    "fewShotTitle": "Prompting few-shot",
+    "fewShotDesc": "Incluye unos pocos ejemplos entrada–salida en el prompt. El modelo infiere el patrón y lo sigue. Útil para formato consistente o tareas concretas.",
+    "chainOfThoughtTitle": "Chain-of-Thought (CoT)",
+    "chainOfThoughtDesc": "Pide al modelo que \"piense paso a paso\" o \"muestre tu razonamiento\". Produce pasos intermedios antes de la respuesta, mejorando a menudo la precisión en tareas de razonamiento.",
+    "temperatureTitle": "Temperatura",
+    "temperatureDesc": "Controla la aleatoriedad. Valores bajos (0.1–0.3) generan resultados enfocados y deterministas. Valores altos (0.8–1.5) aumentan la creatividad. Valores muy altos (>1.5) pueden producir texto incoherente.",
+    "maxTokensTitle": "Tokens Máximos",
+    "maxTokensDesc": "El número máximo de tokens que generará el modelo. Un token equivale a aproximadamente 4 caracteres en inglés. Respuestas más largas usan más tokens.",
+    "topPTitle": "Top P (Muestreo de Núcleo)",
+    "topPDesc": "Selecciona del conjunto más pequeño de tokens cuya probabilidad acumulada supera P. Un valor de 0.9 significa que el modelo considera el 90% superior de la masa de probabilidad.",
+    "topKTitle": "Top K",
+    "topKDesc": "Limita la generación a los K tokens más probables. Valores bajos (10–20) hacen la salida más predecible. Valores altos (50–100) permiten más variedad."
+  },
+  "provider": {
+    "unavailable": "Clave API no configurada"
+  }
+}

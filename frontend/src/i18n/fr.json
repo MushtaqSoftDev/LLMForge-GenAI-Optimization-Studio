@@ -1,0 +1,65 @@
+{
+  "app": {
+    "title": "Laboratoire d'Expériences LLM"
+  },
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "promptEng": "Ingénierie de Prompts",
+    "fineTuning": "Réglage fin",
+    "rl": "Apprentissage par renforcement",
+    "logout": "Déconnexion"
+  },
+  "auth": {
+    "login": "Connexion",
+    "signup": "Inscription",
+    "username": "Nom d'utilisateur",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "noAccount": "Pas encore de compte ?",
+    "haveAccount": "Vous avez déjà un compte ?",
+    "loginBtn": "Se connecter",
+    "signupBtn": "Créer un compte"
+  },
+  "dashboard": {
+    "welcome": "Bienvenue, {name} !",
+    "subtitle": "Choisissez un module pour commencer à expérimenter",
+    "promptEngTitle": "Ingénierie de Prompts",
+    "promptEngDesc": "Expérimentez avec les paramètres de génération en temps réel sur plusieurs fournisseurs LLM.",
+    "fineTuningTitle": "Réglage fin",
+    "fineTuningDesc": "Ajustez les modèles avec vos propres données. Bientôt disponible.",
+    "rlTitle": "Apprentissage par renforcement",
+    "rlDesc": "Entraînez les modèles avec l'apprentissage par renforcement à partir de retours humains. Bientôt disponible.",
+    "comingSoon": "Bientôt",
+    "start": "Commencer"
+  },
+  "chat": {
+    "placeholder": "Tapez votre message…",
+    "send": "Envoyer",
+    "newChat": "Nouveau chat",
+    "thinking": "Réflexion en cours…",
+    "noMessages": "Commencez une conversation en tapant un message ci-dessous.",
+    "errorPrefix": "Erreur"
+  },
+  "params": {
+    "title": "Paramètres",
+    "provider": "Fournisseur",
+    "temperature": "Température",
+    "maxTokens": "Tokens max.",
+    "topP": "Top P",
+    "topK": "Top K"
+  },
+  "methods": {
+    "title": "Guide des paramètres",
+    "temperatureTitle": "Température",
+    "temperatureDesc": "Contrôle le caractère aléatoire. Des valeurs basses (0,1–0,3) produisent des résultats ciblés et déterministes. Des valeurs élevées (0,8–1,5) augmentent la créativité. Des valeurs très élevées (>1,5) peuvent produire du texte incohérent.",
+    "maxTokensTitle": "Tokens max.",
+    "maxTokensDesc": "Le nombre maximum de tokens que le modèle va générer. Un token correspond à environ 4 caractères en anglais. Les réponses plus longues consomment plus de tokens.",
+    "topPTitle": "Top P (Échantillonnage de noyau)",
+    "topPDesc": "Sélectionne parmi le plus petit ensemble de tokens dont la probabilité cumulée dépasse P. Une valeur de 0,9 signifie que le modèle considère les 90 % supérieurs de la masse de probabilité.",
+    "topKTitle": "Top K",
+    "topKDesc": "Limite la génération aux K tokens les plus probables. Des valeurs basses (10–20) rendent la sortie plus prévisible. Des valeurs élevées (50–100) permettent plus de variété."
+  },
+  "provider": {
+    "unavailable": "Clé API non configurée"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "app": {
+    "title": "Laboratori d'Experiments LLM"
+  },
+  "nav": {
+    "dashboard": "Tauler",
+    "promptEng": "Enginyeria de Prompts",
+    "fineTuning": "Ajust Fi",
+    "rl": "Aprenentatge per Reforç",
+    "logout": "Tancar sessió"
+  },
+  "auth": {
+    "login": "Iniciar Sessió",
+    "signup": "Registrar-se",
+    "username": "Nom d'usuari",
+    "email": "Correu electrònic",
+    "password": "Contrasenya",
+    "noAccount": "No tens un compte?",
+    "haveAccount": "Ja tens un compte?",
+    "loginBtn": "Entrar",
+    "signupBtn": "Crear Compte"
+  },
+  "dashboard": {
+    "welcome": "Benvingut, {name}!",
+    "subtitle": "Tria un mòdul per començar a experimentar",
+    "promptEngTitle": "Enginyeria de Prompts",
+    "promptEngDesc": "Experimenta amb paràmetres de generació en temps real amb múltiples proveïdors LLM.",
+    "fineTuningTitle": "Ajust Fi",
+    "fineTuningDesc": "Ajusta models amb les teves pròpies dades. Properament.",
+    "rlTitle": "Aprenentatge per Reforç",
+    "rlDesc": "Entrena models amb aprenentatge per reforç amb retroalimentació humana. Properament.",
+    "comingSoon": "Properament",
+    "start": "Començar"
+  },
+  "chat": {
+    "placeholder": "Escriu el teu missatge…",
+    "send": "Enviar",
+    "newChat": "Nou Xat",
+    "thinking": "Pensant…",
+    "noMessages": "Inicia una conversa escrivint un missatge a sota.",
+    "errorPrefix": "Error"
+  },
+  "params": {
+    "title": "Paràmetres",
+    "provider": "Proveïdor",
+    "temperature": "Temperatura",
+    "maxTokens": "Tokens Màxims",
+    "topP": "Top P",
+    "topK": "Top K"
+  },
+  "methods": {
+    "title": "Guia de Paràmetres",
+    "temperatureTitle": "Temperatura",
+    "temperatureDesc": "Controla l'aleatorietat. Valors baixos (0.1–0.3) generen resultats enfocats i deterministes. Valors alts (0.8–1.5) augmenten la creativitat. Valors molt alts (>1.5) poden produir text incoherent.",
+    "maxTokensTitle": "Tokens Màxims",
+    "maxTokensDesc": "El nombre màxim de tokens que generarà el model. Un token equival a aproximadament 4 caràcters en anglès. Respostes més llargues usen més tokens.",
+    "topPTitle": "Top P (Mostreig de Nucli)",
+    "topPDesc": "Selecciona del conjunt més petit de tokens la probabilitat acumulada dels quals supera P. Un valor de 0.9 significa que el model considera el 90% superior de la massa de probabilitat.",
+    "topKTitle": "Top K",
+    "topKDesc": "Limita la generació als K tokens més probables. Valors baixos (10–20) fan la sortida més predictible. Valors alts (50–100) permeten més varietat."
+  },
+  "provider": {
+    "unavailable": "Clau API no configurada"
+  }
+}

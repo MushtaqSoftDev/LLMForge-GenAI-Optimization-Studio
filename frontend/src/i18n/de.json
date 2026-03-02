@@ -1,0 +1,65 @@
+{
+  "app": {
+    "title": "LLM-Experimentlabor"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "promptEng": "Prompt-Engineering",
+    "fineTuning": "Feinabstimmung",
+    "rl": "Verstärkendes Lernen",
+    "logout": "Abmelden"
+  },
+  "auth": {
+    "login": "Anmelden",
+    "signup": "Registrieren",
+    "username": "Benutzername",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "noAccount": "Noch kein Konto?",
+    "haveAccount": "Bereits ein Konto?",
+    "loginBtn": "Einloggen",
+    "signupBtn": "Konto erstellen"
+  },
+  "dashboard": {
+    "welcome": "Willkommen, {name}!",
+    "subtitle": "Wähle ein Modul, um mit dem Experimentieren zu beginnen",
+    "promptEngTitle": "Prompt-Engineering",
+    "promptEngDesc": "Experimentiere in Echtzeit mit Generierungsparametern über mehrere LLM-Anbieter.",
+    "fineTuningTitle": "Feinabstimmung",
+    "fineTuningDesc": "Modelle mit eigenen Daten feinabstimmen. Demnächst verfügbar.",
+    "rlTitle": "Verstärkendes Lernen",
+    "rlDesc": "Modelle mit verstärkendem Lernen aus menschlichem Feedback trainieren. Demnächst verfügbar.",
+    "comingSoon": "Demnächst",
+    "start": "Starten"
+  },
+  "chat": {
+    "placeholder": "Nachricht eingeben…",
+    "send": "Senden",
+    "newChat": "Neuer Chat",
+    "thinking": "Denkt nach…",
+    "noMessages": "Starte ein Gespräch, indem du unten eine Nachricht eingibst.",
+    "errorPrefix": "Fehler"
+  },
+  "params": {
+    "title": "Parameter",
+    "provider": "Anbieter",
+    "temperature": "Temperatur",
+    "maxTokens": "Max. Tokens",
+    "topP": "Top P",
+    "topK": "Top K"
+  },
+  "methods": {
+    "title": "Parameter-Leitfaden",
+    "temperatureTitle": "Temperatur",
+    "temperatureDesc": "Steuert die Zufälligkeit. Niedrige Werte (0,1–0,3) erzeugen fokussierte und deterministische Ausgaben. Hohe Werte (0,8–1,5) erhöhen die Kreativität. Sehr hohe Werte (>1,5) können inkohärenten Text erzeugen.",
+    "maxTokensTitle": "Max. Tokens",
+    "maxTokensDesc": "Die maximale Anzahl von Tokens, die das Modell generiert. Ein Token entspricht etwa 4 Zeichen im Englischen. Längere Antworten verbrauchen mehr Tokens.",
+    "topPTitle": "Top P (Nucleus-Sampling)",
+    "topPDesc": "Wählt aus der kleinsten Menge von Tokens, deren kumulative Wahrscheinlichkeit P überschreitet. Ein Wert von 0,9 bedeutet, dass das Modell die oberen 90 % der Wahrscheinlichkeitsmasse berücksichtigt.",
+    "topKTitle": "Top K",
+    "topKDesc": "Begrenzt die Generierung auf die K wahrscheinlichsten Tokens. Niedrige Werte (10–20) machen die Ausgabe vorhersehbarer. Hohe Werte (50–100) ermöglichen mehr Vielfalt."
+  },
+  "provider": {
+    "unavailable": "API-Schlüssel nicht konfiguriert"
+  }
+}
