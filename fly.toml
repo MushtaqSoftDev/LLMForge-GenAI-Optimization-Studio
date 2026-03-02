@@ -1,0 +1,23 @@
+# Fly.io config — deploy with: fly launch (first time) or fly deploy
+# Requires: flyctl (https://fly.io/docs/hands-on/install-flyctl/)
+
+app = "llm-experiment-lab"
+
+[build]
+  dockerfile = "Dockerfile.fly"
+
+[env]
+  PORT = "8080"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
+
+# 2GB recommended for HuggingFace model; use external APIs (Groq, etc.) to reduce memory
+[[vm]]
+  memory = "2gb"
+  size = "shared-cpu-1x"
