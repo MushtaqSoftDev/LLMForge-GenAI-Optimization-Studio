@@ -32,6 +32,15 @@ app.include_router(provider_router.router, prefix="/api/providers", tags=["Provi
 app.include_router(finetune_router.router, prefix="/api/finetune", tags=["Fine-tuning"])
 
 
+@app.get("/")
+async def root():
+    return {
+        "message": "LLM Experiment Lab API",
+        "docs": "/docs",
+        "health": "/health",
+    }
+
+
 @app.get("/health")
 async def health():
     return {"status": "ok"}

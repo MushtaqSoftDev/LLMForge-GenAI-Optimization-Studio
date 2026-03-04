@@ -1,5 +1,4 @@
-# Fly.io: Single image for frontend + backend (Postgres via Fly Postgres or Neon)
-# Frontend served by nginx, proxies /api to backend
+
 
 # --- Frontend build ---
 FROM node:20-alpine AS frontend

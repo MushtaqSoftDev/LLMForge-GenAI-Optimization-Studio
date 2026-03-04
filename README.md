@@ -1,4 +1,4 @@
-# LLM Experiment Lab
+# LLMForge - GenAI Optimization Lab
 
 A full-stack platform for experimenting with Large Language Models. Adjust inference parameters (temperature, top_p, top_k, max_tokens) in real time and compare results across multiple providers.
 
@@ -7,7 +7,7 @@ A full-stack platform for experimenting with Large Language Models. Adjust infer
 - **Login / Signup** with JWT authentication
 - **Prompt Engineering** — interactive chatbot with adjustable generation parameters
 - **Multi-provider** — DeepSeek, Groq, OpenAI (ChatGPT), Gemini, and a free HuggingFace local model (CPU)
-- **Internationalization (i18n)** — English, Spanish, Catalan, Arabic
+- **Internationalization (i18n)** — English, Spanish, Catalan, German, French,,,,etc
 - **PostgreSQL** for users, chat history, and parameter snapshots
 - **Docker & Kubernetes** ready
 
@@ -65,27 +65,6 @@ cd frontend && npm install && npm run dev
 
 Requires PostgreSQL running (e.g. `docker compose up postgres -d`).
 
-### 4. Deploy to Fly.io (Docker)
-
-Fly.io runs both frontend and backend in one Docker image. Good for production with Docker.
-
-**Prerequisites:** [flyctl](https://fly.io/docs/hands-on/install-flyctl/)
-
-```bash
-# Install flyctl, then:
-fly auth login
-fly launch   # first time: creates app from fly.toml + Dockerfile.fly
-fly postgres create --name llm-lab-db   # or use Neon/Supabase (see below)
-fly postgres attach llm-lab-db           # sets DATABASE_URL automatically
-fly secrets set SECRET_KEY="your-random-secret"
-fly deploy
-```
-
-**Database options:**
-- **Fly Postgres:** `fly postgres create --name llm-lab-db` then `fly postgres attach llm-lab-db` (auto-sets `DATABASE_URL`)
-- **Neon (free):** Create DB at [neon.tech](https://neon.tech), copy URL, then `fly secrets set DATABASE_URL="postgresql+asyncpg://user:pass@host/db"`
-
-**Secrets:** `fly secrets set SECRET_KEY="..." GROQ_API_KEY="..."` (optional: DeepSeek, OpenAI, Gemini)
 
 ## Providers
 
@@ -113,8 +92,7 @@ If all API keys are exhausted or missing, the HuggingFace local model (default: 
 - [x] Prompt Engineering module
 - [x] Fine-tuning module (Full / LoRA; LoRA when GPU available)
 - [ ] Reinforcement Learning module
-- [ ] Streaming responses (SSE)
-- [ ] Experiment comparison & history
+
 
 ## License
 
