@@ -21,7 +21,7 @@ async function submit() {
     await auth.login(username.value, password.value);
     router.push("/dashboard");
   } catch (err) {
-    error.value = err.response?.data?.detail || "Login failed";
+    error.value = Array.isArray(err.response?.data?.detail) ? err.response?.data?.detail.map((e) => e.msg || e.message).join(" ") : (err.response?.data?.detail || err.message) || "Login failed";
   } finally {
     loading.value = false;
   }

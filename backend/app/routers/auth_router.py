@@ -1,5 +1,8 @@
+import logging
+
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy import select
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.auth import (
@@ -13,6 +16,7 @@ from app.models import User
 from app.schemas import LoginRequest, SignupRequest, TokenResponse, UserResponse
 
 router = APIRouter()
+logger = logging.getLogger(__name__)
 
 
 @router.post("/signup", response_model=TokenResponse, status_code=201)
@@ -31,8 +35,15 @@ async def signup(body: SignupRequest, db: AsyncSession = Depends(get_db)):
         hashed_password=hash_password(body.password),
     )
     db.add(user)
-    await db.commit()
-    await db.refresh(user)
+    try:
+        await db.commit()
+        await db.refresh(user)
+    except SQLAlchemyError as e:
+        logger.exception("Signup database error: %s", e)
+        raise HTTPException(
+            status_code=503,
+            detail="Database unavailable. If you just deployed, set DATABASE_SSL=true and ensure DATABASE_URL is correct.",
+        ) from e
 
     token = create_access_token({"sub": user.id})
     return TokenResponse(access_token=token)

@@ -22,7 +22,8 @@ async function submit() {
     await auth.signup(username.value, email.value, password.value);
     router.push("/dashboard");
   } catch (err) {
-    error.value = err.response?.data?.detail || "Signup failed";
+    const d = err.response?.data?.detail;
+    error.value = Array.isArray(d) ? d.map((e) => e.msg || e.message).join(" ") : (d || err.message) || "Signup failed";
   } finally {
     loading.value = false;
   }
