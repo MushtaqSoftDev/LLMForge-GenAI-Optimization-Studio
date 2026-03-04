@@ -25,6 +25,17 @@ export const useChatStore = defineStore("chat", () => {
   const loading = ref(false);
   const error = ref(null);
   const providers = ref([]);
+  const providersLoading = ref(false);
+  const providersError = ref(null);
+
+  /** Fallback so the dropdown is never empty if the API fails or is slow */
+  const FALLBACK_PROVIDERS = [
+    { name: "huggingface", label: "HuggingFace (free)", available: true },
+    { name: "openai", label: "OpenAI", available: false },
+    { name: "groq", label: "Groq", available: false },
+    { name: "deepseek", label: "DeepSeek", available: false },
+    { name: "gemini", label: "Gemini", available: false },
+  ];
 
   const params = ref({
     provider: "huggingface",
@@ -35,10 +46,23 @@ export const useChatStore = defineStore("chat", () => {
   });
 
   async function fetchProviders() {
-    const { data } = await api.get("/api/providers/");
-    providers.value = data;
-    const available = data.find((p) => p.available);
-    if (available) params.value.provider = available.name;
+    providersLoading.value = true;
+    providersError.value = null;
+    try {
+      const { data } = await api.get("/api/providers/");
+      if (Array.isArray(data) && data.length) {
+        providers.value = data;
+        const available = data.find((p) => p.available);
+        if (available) params.value.provider = available.name;
+      } else {
+        providers.value = FALLBACK_PROVIDERS;
+      }
+    } catch (e) {
+      providersError.value = e?.message || "Could not load providers";
+      providers.value = FALLBACK_PROVIDERS;
+    } finally {
+      providersLoading.value = false;
+    }
   }
 
   async function fetchSessions() {
@@ -104,6 +128,8 @@ export const useChatStore = defineStore("chat", () => {
     loading,
     error,
     providers,
+    providersLoading,
+    providersError,
     params,
     fetchProviders,
     fetchSessions,

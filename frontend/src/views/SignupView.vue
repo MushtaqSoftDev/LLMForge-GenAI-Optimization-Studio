@@ -21,7 +21,7 @@ async function submit() {
   loading.value = true;
   try {
     await auth.signup(username.value, email.value, password.value);
-    router.push("/dashboard");
+    router.push({ path: "/login", query: { registered: "1" } });
   } catch (err) {
     error.value = getFriendlyAuthError(err, "We couldn't create your account. Please try again.");
   } finally {

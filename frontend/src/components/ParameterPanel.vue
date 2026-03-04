@@ -13,7 +13,8 @@ const chat = useChatStore();
     <!-- Provider -->
     <div class="param-group">
       <label>{{ t("params.provider") }}</label>
-      <select v-model="chat.params.provider" class="input-field">
+      <select v-model="chat.params.provider" class="input-field" :disabled="chat.providersLoading">
+        <option v-if="chat.providers.length === 0" value="huggingface">{{ chat.providersLoading ? "Loading…" : "HuggingFace (free)" }}</option>
         <option
           v-for="p in chat.providers"
           :key="p.name"
@@ -24,7 +25,8 @@ const chat = useChatStore();
           <template v-if="!p.available"> ({{ t("provider.unavailable") }})</template>
         </option>
       </select>
-      <p class="param-hint">{{ t("params.apiKeyHint") }}</p>
+      <p v-if="chat.providersError" class="param-hint param-error">{{ chat.providersError }}</p>
+      <p v-else class="param-hint">{{ t("params.apiKeyHint") }}</p>
     </div>
 
     <!-- Temperature -->
@@ -139,6 +141,9 @@ const chat = useChatStore();
   color: var(--text-muted);
   line-height: 1.3;
   margin: 0;
+}
+.param-error {
+  color: var(--danger, #c00);
 }
 
 /* Slider */

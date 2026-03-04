@@ -1,12 +1,13 @@
 <script setup>
-import { ref } from "vue";
-import { useRouter } from "vue-router";
+import { ref, onMounted } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { useAuthStore } from "../stores/auth";
 import { getFriendlyAuthError } from "../utils/errors";
 import LanguageSwitcher from "../components/LanguageSwitcher.vue";
 
 const { t } = useI18n();
+const route = useRoute();
 const router = useRouter();
 const auth = useAuthStore();
 
@@ -14,6 +15,12 @@ const username = ref("");
 const password = ref("");
 const error = ref("");
 const loading = ref(false);
+const successMessage = ref("");
+onMounted(() => {
+  if (route.query.registered === "1") {
+    successMessage.value = "Account created. Please sign in.";
+  }
+});
 
 async function submit() {
   error.value = "";
@@ -37,6 +44,7 @@ async function submit() {
       <div class="auth-card card">
         <h1 class="auth-title">{{ t("app.title") }}</h1>
         <h2 class="auth-subtitle">{{ t("auth.login") }}</h2>
+        <p v-if="successMessage" class="success-msg">{{ successMessage }}</p>
 
         <form @submit.prevent="submit" class="auth-form">
           <div class="field">
@@ -126,6 +134,11 @@ async function submit() {
 }
 .full-w {
   width: 100%;
+}
+.success-msg {
+  color: var(--accent, #0a0);
+  font-size: 0.9rem;
+  margin-bottom: 12px;
 }
 .error-msg {
   color: var(--danger);

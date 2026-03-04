@@ -8,9 +8,9 @@ import ParameterPanel from "../components/ParameterPanel.vue";
 const chat = useChatStore();
 const chatWindowRef = ref(null);
 
-onMounted(() => {
-  chat.fetchProviders();
-  chat.fetchSessions();
+onMounted(async () => {
+  await chat.fetchProviders();
+  await chat.fetchSessions();
 });
 
 function handleCopyToChat(text) {

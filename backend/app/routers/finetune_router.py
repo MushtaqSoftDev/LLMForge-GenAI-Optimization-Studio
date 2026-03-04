@@ -1,8 +1,9 @@
 import asyncio
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 
 from app.auth import get_current_user
+from app.config import settings
 from app.models import User
 
 router = APIRouter()
@@ -160,5 +161,10 @@ def _run_demo():
 
 @router.post("/demo")
 async def run_finetune_demo(user: User = Depends(get_current_user)):
+    if settings.DISABLE_FINETUNE_DEMO.strip().lower() in ("true", "1", "yes"):
+        raise HTTPException(
+            status_code=503,
+            detail="The fine-tuning demo is disabled on this server (it needs several minutes and more memory than hosted environments allow). Run the code example locally with Python and PyTorch to try full fine-tuning and LoRA/PEFT.",
+        )
     result = await asyncio.to_thread(_run_demo)
     return result

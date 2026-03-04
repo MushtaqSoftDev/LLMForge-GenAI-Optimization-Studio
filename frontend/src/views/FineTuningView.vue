@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import { useI18n } from "vue-i18n";
 import api from "../services/api";
+import { getFriendlyAuthError } from "../utils/errors";
 
 const { t } = useI18n();
 
@@ -25,7 +26,10 @@ async function runDemo() {
     const { data } = await api.post("/api/finetune/demo");
     result.value = data;
   } catch (err) {
-    error.value = err.response?.data?.detail || err.message;
+    error.value = getFriendlyAuthError(
+      err,
+      "The fine-tuning demo is not available here (it needs several minutes and more memory). Use the code example below and run it locally with Python and PyTorch to try full fine-tuning and LoRA/PEFT."
+    );
   } finally {
     running.value = false;
   }
@@ -176,6 +180,7 @@ function copyCode() {
       </button>
       <div v-if="openSections.has('demo')" class="section-content">
         <p>{{ t("fineTuning.demoDesc") }}</p>
+        <p class="demo-hint">{{ t("fineTuning.demoHostedNote") }}</p>
 
         <button
           class="btn btn-primary"
@@ -388,6 +393,11 @@ function copyCode() {
 }
 .rouge-scores b {
   color: var(--accent);
+}
+.demo-hint {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
 }
 .demo-error {
   margin-top: 12px;
