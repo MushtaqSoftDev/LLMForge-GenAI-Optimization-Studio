@@ -1,9 +1,10 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { useAuthStore } from "../stores/auth";
 import { getFriendlyAuthError } from "../utils/errors";
+import api from "../services/api";
 import LanguageSwitcher from "../components/LanguageSwitcher.vue";
 
 const { t } = useI18n();
@@ -15,6 +16,15 @@ const email = ref("");
 const password = ref("");
 const error = ref("");
 const loading = ref(false);
+const demoModeNote = ref(false);
+onMounted(async () => {
+  try {
+    const { data } = await api.get("/api/config");
+    if (data && data.persist_accounts === false) demoModeNote.value = true;
+  } catch {
+    // ignore
+  }
+});
 
 async function submit() {
   error.value = "";
@@ -38,6 +48,7 @@ async function submit() {
       <div class="auth-card card">
         <h1 class="auth-title">{{ t("app.title") }}</h1>
         <h2 class="auth-subtitle">{{ t("auth.signup") }}</h2>
+        <p v-if="demoModeNote" class="demo-mode-note">{{ t("auth.demoModeNote") }}</p>
 
         <form @submit.prevent="submit" class="auth-form">
           <div class="field">
@@ -138,6 +149,15 @@ async function submit() {
 }
 .full-w {
   width: 100%;
+}
+.demo-mode-note {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-bottom: 12px;
+  padding: 8px 10px;
+  background: var(--bg-tertiary, #f0f0f0);
+  border-radius: var(--radius, 6px);
 }
 .error-msg {
   color: var(--danger);

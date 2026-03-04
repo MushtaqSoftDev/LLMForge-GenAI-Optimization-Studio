@@ -10,6 +10,7 @@
     "logout": "Logout"
   },
   "auth": {
+    "demoModeNote": "This is a demo server. Accounts are not saved across restarts — you may need to sign up again after the server restarts or goes to sleep. For persistent accounts, deploy with a real database (e.g. Render Postgres).",
     "login": "Login",
     "signup": "Sign Up",
     "username": "Username",

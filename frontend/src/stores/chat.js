@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import api from "../services/api";
+import { getFriendlyAuthError } from "../utils/errors";
 
 function toFriendlyError(msg) {
   if (typeof msg !== "string") return "Something went wrong";
@@ -54,12 +55,15 @@ export const useChatStore = defineStore("chat", () => {
         providers.value = data;
         const available = data.find((p) => p.available);
         if (available) params.value.provider = available.name;
-      } else {
+      } else if (providers.value.length === 0) {
         providers.value = FALLBACK_PROVIDERS;
       }
     } catch (e) {
-      providersError.value = e?.message || "Could not load providers";
-      providers.value = FALLBACK_PROVIDERS;
+      providersError.value = getFriendlyAuthError(e, "Could not load providers.");
+      // Keep existing list so Prompt-eng is not affected by fine-tune or temporary 502
+      if (providers.value.length === 0) {
+        providers.value = FALLBACK_PROVIDERS;
+      }
     } finally {
       providersLoading.value = false;
     }

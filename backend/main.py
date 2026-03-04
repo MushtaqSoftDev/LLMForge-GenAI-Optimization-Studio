@@ -65,3 +65,11 @@ async def root():
 @app.get("/health")
 async def health():
     return {"status": "ok"}
+
+
+@app.get("/api/config")
+async def app_config():
+    """Frontend can use this to show e.g. demo-mode notice (accounts not persisted)."""
+    return {
+        "persist_accounts": settings.DISABLE_DB.strip().lower() not in ("true", "1", "yes"),
+    }

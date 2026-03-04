@@ -4,6 +4,7 @@ import { useRoute, useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { useAuthStore } from "../stores/auth";
 import { getFriendlyAuthError } from "../utils/errors";
+import api from "../services/api";
 import LanguageSwitcher from "../components/LanguageSwitcher.vue";
 
 const { t } = useI18n();
@@ -16,9 +17,16 @@ const password = ref("");
 const error = ref("");
 const loading = ref(false);
 const successMessage = ref("");
-onMounted(() => {
+const demoModeNote = ref(false);
+onMounted(async () => {
   if (route.query.registered === "1") {
     successMessage.value = "Account created. Please sign in.";
+  }
+  try {
+    const { data } = await api.get("/api/config");
+    if (data && data.persist_accounts === false) demoModeNote.value = true;
+  } catch {
+    // ignore; config is optional
   }
 });
 
@@ -45,6 +53,7 @@ async function submit() {
         <h1 class="auth-title">{{ t("app.title") }}</h1>
         <h2 class="auth-subtitle">{{ t("auth.login") }}</h2>
         <p v-if="successMessage" class="success-msg">{{ successMessage }}</p>
+        <p v-if="demoModeNote" class="demo-mode-note">{{ t("auth.demoModeNote") }}</p>
 
         <form @submit.prevent="submit" class="auth-form">
           <div class="field">
@@ -139,6 +148,15 @@ async function submit() {
   color: var(--accent, #0a0);
   font-size: 0.9rem;
   margin-bottom: 12px;
+}
+.demo-mode-note {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-bottom: 12px;
+  padding: 8px 10px;
+  background: var(--bg-tertiary, #f0f0f0);
+  border-radius: var(--radius, 6px);
 }
 .error-msg {
   color: var(--danger);
