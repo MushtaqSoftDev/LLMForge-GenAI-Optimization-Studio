@@ -8,7 +8,8 @@ export function getFriendlyAuthError(err, fallback = "Something went wrong. Plea
   if (!err) return fallback;
 
   const status = err.response?.status;
-  const detail = err.response?.data?.detail;
+  const data = err.response?.data;
+  const detail = data && typeof data === "object" ? data.detail : null;
 
   // Server sent a message we can show (avoid showing technical text)
   const safeDetail =
@@ -23,13 +24,14 @@ export function getFriendlyAuthError(err, fallback = "Something went wrong. Plea
     if (msg) return msg;
   }
 
-  // Map status codes to friendly messages (no "502", "500", etc.)
+  // Map status codes to friendly messages (no raw codes like 500, 502)
   const messages = {
     400: "Invalid request. Please check your details and try again.",
     401: "Invalid username or password.",
     403: "You don't have permission to do this.",
     404: "This service is not available. Please try again later.",
     409: "This username or email is already in use.",
+    500: "Something went wrong. Please try again in a moment.",
     502: "The server is temporarily unavailable. Please try again in a minute.",
     503: "Service is busy or the database is unavailable. Please try again shortly.",
     504: "The request took too long. Please try again.",

@@ -2,6 +2,8 @@ from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
+    """Set to 'true' to use in-memory SQLite (no Postgres). Good for study demos on Render without a DB."""
+    DISABLE_DB: str = "false"
     DATABASE_URL: str = "postgresql+asyncpg://postgres:postgres@localhost:5432/llm_lab"
     """Set to 'true' on Render (and other hosted Postgres) to use SSL."""
     DATABASE_SSL: str = "false"
