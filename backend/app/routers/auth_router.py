@@ -42,7 +42,7 @@ async def signup(body: SignupRequest, db: AsyncSession = Depends(get_db)):
         logger.exception("Signup database error: %s", e)
         raise HTTPException(
             status_code=503,
-            detail="Database unavailable. If you just deployed, set DATABASE_SSL=true and ensure DATABASE_URL is correct.",
+            detail="We're temporarily unable to create your account. Please try again in a moment.",
         ) from e
 
     token = create_access_token({"sub": user.id})

@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { useAuthStore } from "../stores/auth";
+import { getFriendlyAuthError } from "../utils/errors";
 import LanguageSwitcher from "../components/LanguageSwitcher.vue";
 
 const { t } = useI18n();
@@ -21,7 +22,7 @@ async function submit() {
     await auth.login(username.value, password.value);
     router.push("/dashboard");
   } catch (err) {
-    error.value = Array.isArray(err.response?.data?.detail) ? err.response?.data?.detail.map((e) => e.msg || e.message).join(" ") : (err.response?.data?.detail || err.message) || "Login failed";
+    error.value = getFriendlyAuthError(err, "We couldn't sign you in. Please check your details and try again.");
   } finally {
     loading.value = false;
   }

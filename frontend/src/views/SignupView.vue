@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { useAuthStore } from "../stores/auth";
+import { getFriendlyAuthError } from "../utils/errors";
 import LanguageSwitcher from "../components/LanguageSwitcher.vue";
 
 const { t } = useI18n();
@@ -22,8 +23,7 @@ async function submit() {
     await auth.signup(username.value, email.value, password.value);
     router.push("/dashboard");
   } catch (err) {
-    const d = err.response?.data?.detail;
-    error.value = Array.isArray(d) ? d.map((e) => e.msg || e.message).join(" ") : (d || err.message) || "Signup failed";
+    error.value = getFriendlyAuthError(err, "We couldn't create your account. Please try again.");
   } finally {
     loading.value = false;
   }
